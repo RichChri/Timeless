@@ -95,8 +95,27 @@ while True:
         print("❌ ERROR:", e)
     time.sleep(60)
 from flask import Flask
-app = Flask(__name__)
+import threading
+import time
+
+app = Flask(_name_)
 
 @app.route('/')
 def home():
     return "I'm alive!"
+
+def run_automation():
+    while True:
+        print("I'm running task...")
+        # your automation task here
+        time.sleep(60)
+
+def start_background():
+    t = threading.Thread(target=run_automation)
+    t.daemon = True
+    t.start()
+
+start_background()  # Always starts
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=10000)
