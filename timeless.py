@@ -12,18 +12,14 @@ CHROME_PROFILE_PATH = "/app/.config/google-chrome"  # For Replit container
 TIMEBUCKS_URL = "https://timebucks.com/dashboard"
 
 # === SETUP CHROMEDRIVER ===
-options = Options()
-options.add_argument("--headless")  # Run in headless mode
-options.add_argument("--no-sandbox")  # Required on most servers
-options.add_argument("--disable-dev-shm-usage")  # Avoid shared memory crashes
-options.add_argument("--disable-gpu")
-options.add_argument("--disable-infobars")
-options.add_argument("--disable-extensions")
-options.add_argument("--remote-debugging-port=9222")
-options.add_argument("--window-size=1920x1080")
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
 
+chrome_options.binary_location = "/usr/bin/google-chrome"  # Render's location
 
-driver = webdriver.Chrome(options=options)
+driver = webdriver.Chrome(options=chrome_options)
 
 # === LOGIN ===
 driver.get(TIMEBUCKS_URL)
@@ -99,3 +95,9 @@ while True:
     except Exception as e:
         print("❌ ERROR:", e)
     time.sleep(60)
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "I'm alive!"
