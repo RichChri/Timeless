@@ -4,6 +4,7 @@ keep_alive()
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+import undetected_chromedriver as uc
 import time
 import os
 
@@ -12,14 +13,12 @@ CHROME_PROFILE_PATH = "/app/.config/google-chrome"  # For Replit container
 TIMEBUCKS_URL = "https://timebucks.com/dashboard"
 
 # === SETUP CHROMEDRIVER ===
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
+options = uc.ChromeOptions()
+options.add_argument("--headless")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
 
-chrome_options.binary_location = "/usr/bin/google-chrome"  # Render's location
-
-driver = webdriver.Chrome(options=chrome_options)
+driver = uc.Chrome(options=options)
 
 # === LOGIN ===
 driver.get(TIMEBUCKS_URL)
