@@ -2,3 +2,4 @@ Flask==3.0.3
 gunicorn==22.0.0
 selenium==4.16.0
 undetected-chromedriver==3.5.5
+setuptools>==67.0.0
