@@ -1,1 +1,1 @@
-gunicorn timeless:app --bind 0.0.0.0:10000
+python3 timeless.py
